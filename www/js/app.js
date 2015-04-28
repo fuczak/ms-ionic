@@ -23,57 +23,65 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
-
-  .state('splash', {
-    url: '/',
-    templateUrl: 'templates/splash.html',
-    controller: 'SplashCtrl'
-  })
-  // setup an abstract state for the tabs directive
-  .state('tab', {
-    url: "/tab",
-    abstract: true,
-    templateUrl: "templates/tabs.html"
-  })
-
-  // Each tab has its own nav history stack:
-
-  .state('tab.plan', {
-    url: '/plan',
-    views: {
-      'tab-plan': {
-        templateUrl: 'templates/tab-plan.html',
-        controller: 'PlanCtrl'
+    .state('signin', {
+      url: '/sign-in',
+      templateUrl: 'templates/sign-in.html',
+      controller: 'SignInCtrl'
+    })
+    .state('tabs', {
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+    })
+    .state('tabs.plan', {
+      url: '/plan',
+      views: {
+        'plan-tab': {
+          templateUrl: 'templates/plan.html',
+          controller: 'PlanCtrl'
+        }
       }
-    }
-  })
-
-  .state('tab.recipes', {
+    })
+    .state('tabs.recipes', {
       url: '/recipes',
       views: {
-        'tab-recipes': {
-          templateUrl: 'templates/tab-recipes.html',
-          controller: 'RecipesCtrl'
+        'recipes-tab': {
+          templateUrl: 'templates/recipes.html',
+          controller: 'RecipesCtrl',
+          resolve: {
+            recipes: function(Recipe) {
+              return Recipe.getAllRecipes();
+            }
+          }
+        }
+      }
+    })
+    .state('tabs.recipe-details', {
+      url: '/recipes/:id',
+      views: {
+        'recipes-tab': {
+          templateUrl: 'templates/recipe-details.html',
+          controller: 'RecipeDetailCtrl',
+          resolve: {
+            recipe: function($stateParams, Recipe) {
+              return Recipe.getRecipe($stateParams.id);
+            }
+          }
+        }
+      }
+    })
+    .state('tabs.profile', {
+      url: '/profile',
+      views: {
+        'profile-tab': {
+          templateUrl: 'templates/profile.html',
+          controller: 'ProfileCtrl'
         }
       }
     })
 
-  .state('tab.profile', {
-    url: '/profile',
-    views: {
-      'tab-profile': {
-        templateUrl: 'templates/tab-profile.html',
-        controller: 'ProfileCtrl'
-      }
-    }
-  });
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/sign-in');
 
 });

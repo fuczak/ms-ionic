@@ -1,14 +1,20 @@
 angular.module('starter.controllers', [])
-.controller('SplashCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
-	$scope.skipIntro = function() {
-		$state.go('tab.plan');
-	};
+.controller('SignInCtrl', function($state) {
+	console.log('redirect')
+	$state.go('tabs.recipes')
 })
 .controller('PlanCtrl', function($scope) {
 	
 })
-.controller('RecipesCtrl', function($scope) {
-	
+.controller('RecipesCtrl', function($scope, recipes) {
+	$scope.recipes = recipes.data;
+
+	$scope.clearSearch = function() {
+		$scope.searchText = '';
+	};
+})
+.controller('RecipeDetailCtrl', function($scope, recipe) {
+	$scope.recipe = recipe;
 })
 .controller('ProfileCtrl', function($scope) {
 	
