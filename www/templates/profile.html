@@ -1,5 +1,10 @@
 <ion-view view-title="Profile list">
 	<ion-content>
-		<h1>Profile</h1>
+		<h1>Here's your fridge:</h1>
+		<ion-list>
+			<ion-item collection-repeat="ingredient in ingredients">
+				<p>{{ingredient.name}}</p><span class="text-small">{{ingredient.unit}}</span>
+			</ion-item>
+		</ion-list>
 	</ion-content>
 </ion-view>
