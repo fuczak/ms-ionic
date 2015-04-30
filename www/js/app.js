@@ -6,20 +6,20 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
-.constant('FURL', 'https://multi-shopper.firebaseio.com')
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleLightContent();
-    }
-  });
-})
+  .constant('FURL', 'https://multi-shopper.firebaseio.com')
+  .run(function($ionicPlatform) {
+    $ionicPlatform.ready(function() {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      }
+      if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleLightContent();
+      }
+    });
+  })
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -27,7 +27,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .state('signin', {
       url: '/sign-in',
       templateUrl: 'templates/sign-in.html',
-      controller: 'SignInCtrl'
+      controller: 'UserCtrl'
     })
     .state('tabs', {
       url: '/tab',
@@ -84,7 +84,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           }
         }
       }
-    })
+    });
 
 
   $urlRouterProvider.otherwise('/sign-in');
