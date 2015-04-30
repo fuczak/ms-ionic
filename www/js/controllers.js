@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 .controller('SignInCtrl', function($scope, $state) {
 	$scope.skipLogin = function() {
-		$state.go('tabs.recipes')
+		$state.go('tabs.recipes');
 	};
 })
 .controller('PlanCtrl', function($scope) {

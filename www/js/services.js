@@ -13,7 +13,7 @@ angular.module('starter.services', [])
     },
     getRecipe: function(index) {
       return this.getAllRecipes().then(function(data) {
-        return data.data[index]
+        return data.data[index];
       })
     }
   }
@@ -72,7 +72,7 @@ angular.module('starter.services', [])
     },
     logout: function() {
       auth.$unauth();
-    } 
+    }
   };
   //Every time authentication state changes
   auth.$onAuth(function(authData) {
