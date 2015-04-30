@@ -12,8 +12,8 @@
 	</ion-header-bar>
 	<ion-content class="has-subheader">
 		<ion-list>
-			<ion-item class="item" collection-repeat="recipe in recipes | filter:searchText" href="#/tab/recipes/{{$index}}">
-				<h3>{{recipe.name}}</h3>
+			<ion-item class="item" collection-repeat="recipe in recipes | filter:searchText" href="#/tab/recipes/{{recipe.$id}}">
+				<h3>{{recipe.$id}}: {{recipe.name}}</h3>
 			</ion-item>
 		</ion-list>
 	</ion-content>

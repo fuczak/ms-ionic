@@ -50,7 +50,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           controller: 'RecipesCtrl',
           resolve: {
             recipes: function(Recipe) {
-              return Recipe.getAllRecipes();
+              return Recipe.getAllRecipes;
             }
           }
         }

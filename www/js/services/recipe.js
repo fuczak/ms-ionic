@@ -1,23 +1,19 @@
 angular.module('starter.services')
-  .factory('Recipe', function($http) {
+  .factory('Recipe', function(FURL, Auth, $firebaseArray, $firebaseObject) {
+
+    var ref = new Firebase(FURL);
 
     var Recipe = {
-      getAllRecipes: function() {
-        return $http.get('js/database/recipes.json')
-          .success(function(data) {
-            return data;
-          })
-          .error(function(err) {
-            return err;
-          });
+      getAllRecipes: $firebaseArray(ref.child('default_recipes')),
+      getRecipe: function(id) {
+        return $firebaseObject(ref.child('default_recipes').child(id)).$loaded();
       },
-      getRecipe: function(index) {
-        return this.getAllRecipes().then(function(data) {
-          return data.data[index];
-        });
+      addRecipe: function(recipe, user) {
+        recipe.author = user.profile;
+        return $firebaseArray(ref.child('user_recipes').child(user.uid)).$add(recipe);
       }
     };
 
     return Recipe;
-    
+
   });
