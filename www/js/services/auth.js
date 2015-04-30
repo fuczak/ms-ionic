@@ -1,5 +1,5 @@
 angular.module('starter.services')
-  .factory('Auth', function() {
+  .factory('Auth', function(FURL, $firebaseAuth, $firebaseObject) {
 
     var ref = new Firebase(FURL);
     var auth = $firebaseAuth(ref);
